@@ -31,9 +31,7 @@
         <strong style="color: red">1.</strong> Lorem Ipsum is simply dummy text
         of the printing and typesetting industry. Lorem Ipsum has been the
         industry's standard dummy
-      <p>
-		  
-	  </p>
+      </h4>
       <div
         class=" correct-123 btn-q-123"
         style="
@@ -206,7 +204,7 @@
       <br />
       <button
         type="button"
-        class="btn btn-primary small mt-2 btn-retry text-center"
+        class="btn btn-primary small mt-2 btn-retry-123 text-center"
 		style="max-width: 10vw; min-width: 65px;"
         disabled
       >
@@ -219,29 +217,33 @@
           $(this).children(":first").css("background-color", "green");
           $(this).children(":first").css("border-color", "green");
           $(this).children(":first").next().css("border-color", "green");
+		  $(".btn-q-123").each(function () {
+			  $(this).css("pointer-events", "none")
+		  })
         } else {
           $(this).children(":first").next().css("border-color", "red");
 		  $(".btn-q-123").each(function () {
 			  $(this).css("pointer-events", "none")
 		  })
-          $(".btn-retry").prop("disabled", false);
-          $(".btn-retry").removeClass("btn-primary");
-          $(".btn-retry").addClass("btn-danger");
-          $(".btn-retry").text("Fail");
+          $(".btn-retry-123").prop("disabled", false);
+          $(".btn-retry-123").removeClass("btn-primary");
+          $(".btn-retry-123").addClass("btn-danger");
+          $(".btn-retry-123").text("Fail");
           setTimeout(() => {
-            $(".btn-retry").text("Retry");
+            $(".btn-retry-123").text("Retry");
           }, 1300);
         }
       });
-      $(".btn-retry").click(function () {
+      $(".btn-retry-123").click(function () {
         $(this).prop("disabled", true);
         $(".btn-q-123").each(function () {
 			$(this).children(":first").next().css("border-color", "black");
 			$(this).css("pointer-events", "auto")
         });
-		$(".btn-retry").removeClass("btn-danger");
-          $(".btn-retry").addClass("btn-primary");
+		$(".btn-retry-123").removeClass("btn-danger");
+          $(".btn-retry-123").addClass("btn-primary");
       });
     </script>
+	
   </body>
 </html>
