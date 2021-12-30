@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container bg-light page-3 justify-content-center">
+		<div class="row justify-content-center mb-3 mt-3">
+			<div class="col-sm-3 col-md-6 col-lg-3 align-items-center mr-6" style="overflow: auto; max-height: 40vh;">
+				<h2>Para dar um alo para seus colegas você pode de trabalho, você pode dizer...</h2>
+				<div class="btn-group-horizontal mt-3">
+					<button type="button" class="btn btn-primary btn-lg btn-q  mt-2">No.</button>
+				<button type="button" class="btn btn-primary btn-lg btn-q mt-2">Bye!</button>
+				<button type="button" class="btn btn-primary btn-lg btn-q mt-2 correct">Hello!</button>
+				  </div>
+				  <br>
+				  <button type="button" class="btn btn-primary small  mt-2 btn-retry text-center" disabled>Retry</button>
+				
+				
+			</div>
+			<div class="col-sm-3 col-md-6 col-lg-7 align-items-center text-center ">
+				<img src="https://c.tenor.com/nhYIJIL36bYAAAAC/mr-bean-wave.gif" alt=""
+					class="img-fluid img-audio" data-toggle="popover" title="Popover title" >
+				
+			</div>
+		</div>
+	</div>
+	<script>
+		$(".btn-q").click(function (){
+			if($(this).hasClass("correct"))
+			{
+				$(this).removeClass("btn-primary")
+				$(this).addClass("btn-success")
+				$(this).prev().prop("disabled", true);
+				$(this).prev().prev().prop("disabled", true);
+				$(".btn-retry").removeClass("btn-primary")
+				$(".btn-retry").removeClass("btn-danger");
+				$(".btn-retry").addClass("btn-success")
+				$(".btn-retry").text("Success")
+			}
+			else
+			{
+				$(this).removeClass("btn-primary")
+				$(this).addClass("btn-danger")
+				$(".btn-q").each(function(){
+					$(this).prop("disabled", true);
+				})
+				$(".btn-retry").prop("disabled", false);
+				$(".btn-retry").removeClass("btn-primary");
+				$(".btn-retry").addClass("btn-danger")
+				$(".btn-retry").text("Fail")
+				setTimeout(() => {
+					$(".btn-retry").text("Retry")
+				}, 1300);
+			}
+		})
+		$(".btn-retry").click(function (){
+			$(this).prop("disabled", true);
+				$(".btn-q").each(function(){
+					if($(this).hasClass("btn-danger"))
+					{
+						$(this).removeClass("btn-danger");
+						$(this).addClass("btn-primary");
+						$(this).prop("disabled", false);
+					}
+					else
+					{
+						$(this).removeClass("btn-success");
+						$(this).addClass("btn-primary");
+						$(this).prop("disabled", false);
+					}
+				})
+			})
+	</script>
+</body>
+
+</html>
