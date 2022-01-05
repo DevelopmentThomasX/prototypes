@@ -1,0 +1,98 @@
+<div class=" container bg-light"
+		style="display: flex; margin: 8px auto 0; flex-direction: row; justify-content: space-between; align-content: space-evenly; max-width: 1160px; width: 94%; height: 97vh; flex-wrap: wrap;">
+		<div class="img-container"
+			style="display: flex; justify-content: space-evenly; width: 100%; flex-wrap: wrap; max-height: 82vh;">
+			<div class="img-123 img-1" style="max-height: 35vh; display: flex; flex-direction: column;">
+				<img class="img-fluid" src="https://picsum.photos/500/500" alt="" srcset="">
+				<small style="text-align: center;">Creditos imagem</small>
+				<div class="dropzone-123 "
+					style="width: 100%; height: 5vh; border: 2px solid black;  margin: 2px 0 0; display: flex; align-items: center; justify-content: center;">
+					<p style="text-align: center; padding: 0;"> <strong>Coloque o texto aqui</strong></p>
+				</div>
+			</div>
+			<div class="img-123 img-2" style="max-height: 35vh; display: flex; flex-direction: column;">
+				<img class="img-fluid" src="https://picsum.photos/500/500" alt="" srcset="">
+				<small style="text-align: center;">Creditos imagem</small>
+				<div class="dropzone-123 "
+					style="width: 100%; height: 5vh; border: 2px solid black;  margin: 2px 0 0; display: flex; align-items: center; justify-content: center;">
+					<p style="text-align: center; padding: 0;"> <strong>Coloque o texto aqui</strong></p>
+				</div>
+			</div>
+
+
+		</div>
+		<div style="height: fit-content; width: 100%; text-align: center;">
+			<strong>Arraste a frase que da matching com a imagem</strong>
+		</div>
+		<div class="answers-container"
+			style="display: flex; justify-content: center; align-content: center; text-align: center; width: 100%; gap: 16px;">
+			<div class="answer-123 img-2" style="border: 1px solid black; text-align: center;" draggable="true">
+				<strong>Imagem 1</strong>
+			</div>
+			<div class="answer-123 img-1" style="border: 1px solid black; text-align: center;" draggable="true">
+				<strong>Imagem 2</strong>
+			</div>
+		</div>
+		<button class="btn-primary btn btn-check-123" style="margin: 0 auto;">
+			check
+		</button>
+
+	</div>
+
+	<script>
+		$("img").each(function () {
+			$(this).css("object-fit", "contain")
+			$(this).css("max-height", "80%")
+		})
+		var answers = document.querySelectorAll(".answer-123");
+		var dropzones = document.querySelectorAll(".dropzone-123");
+		answers.forEach(answer => {
+			answer.addEventListener("dragstart", onDragStart);
+			//answer.addEventListener("drag", onDrag);
+			answer.addEventListener("dragend", onDragEnd);
+		})
+
+		function onDragStart() {
+			this.classList.add("is-dragging");
+			dropzones.forEach(dropzone => {
+				if (!dropzone.classList.contains("has-child")) dropzone.style.backgroundColor = "#F0917F"
+			})
+		}
+
+		function onDragEnd() {
+			this.classList.remove("is-dragging");
+			dropzones.forEach(dropzone => {
+				dropzone.style.backgroundColor = "transparent"
+			})
+		}
+
+		function onDragOver() {
+			const wordBeingDragged = document.querySelector(".is-dragging");
+			this.innerHTML = ""
+			wordBeingDragged.style.margin = "0"
+			wordBeingDragged.style.border = "none"
+			this.appendChild(wordBeingDragged);
+		}
+
+		dropzones.forEach(dropzone => {
+			//dropzone.addEventListener("dragenter", onDragEnter);
+			dropzone.addEventListener("dragover", onDragOver);
+			//dropzone.addEventListener("dragleave", onDragLeave);
+		})
+
+		$(".btn-check-123").click(function () {
+			$(".img-123").each(function () {
+				if ($(this).hasClass("img-1") && $(this).children(".dropzone-123").children(":first").hasClass("img-1")) {
+					$(this).hasClass("img-1") && $(this).children(".dropzone-123").css("border-color", "green")
+				}
+				else if ($(this).hasClass("img-2") && $(this).children(".dropzone-123").children(":first").hasClass("img-2")) {
+					$(this).hasClass("img-2") && $(this).children(".dropzone-123").css("border-color", "green")
+				}
+				else {
+					$(this).hasClass("img-1") && $(this).children(".dropzone-123").css("border-color", "red")
+					$(this).hasClass("img-2") && $(this).children(".dropzone-123").css("border-color", "red")
+				}
+			})
+		})
+
+	</script>

@@ -170,29 +170,35 @@
 		</div>
 	</div>
 	<script>
-		let selecteds = 0;
-		let corrects = 0
-		let flag = 0;
+		let selecteds123 = 0;
+		let corrects123 = 0
+		let flag123 = 0;
 
 		$(".btn-q-123").click(function () {
-			$(this).addClass("selected");
+			$(this).toggleClass("selected-123");
 			$(this).children(":first").next().css("border-color", "rgb(66, 133, 244)");
-			selecteds++;
+			if (!$(this).hasClass("selected-123")) {
+				$(this).children(":first").next().css("border-color", "black");
+				selecteds123--;
+			}
+			else {
+				selecteds123++;
+
+			}
 		})
 		$(".btn-q-123").each(function () {
-			if ($(this).hasClass("correct-123")) corrects++;
+			if ($(this).hasClass("correct-123")) corrects123++;
 		})
-		function correctAnswers() {
-			$(".selected").each(function () {
+		function correctAnswers123() {
+			$(".selected-123").each(function () {
 				if (!$(this).hasClass("correct-123")) {
-					flag = 1
+					flag123 = 1
 					return false
 				}
 				else {
-					flag = 0;
+					flag123 = 0;
 				}
 			})
-			console.log(flag)
 			if ($(this).hasClass("correct-123")) {
 				$(this).children(":first").css("background-color", "green");
 				$(this).children(":first").css("border-color", "green");
@@ -203,7 +209,7 @@
 				$(".btn-q-123").each(function () {
 					$(this).css("pointer-events", "none")
 				})
-				if (selecteds == corrects && flag == 0) {
+				if (selecteds123 == corrects123 && flag123 == 0) {
 					$(".btn-retry-123").removeClass("btn-primary");
 					$(".btn-retry-123").addClass("btn-success");
 					$(".btn-retry-123").text("Success");
@@ -222,10 +228,10 @@
 			}
 		}
 		$(".btn-retry-123").click(function () {
-			$(".selected").each(function () {
-				$(this).removeClass("selected")
+			$(".selected-123").each(function () {
+				$(this).removeClass("selected-123")
 			})
-			selecteds = 0;
+			selecteds123 = 0;
 			$(this).prop("disabled", true);
 			$(".btn-q-123").each(function () {
 				$(this).children(":first").next().css("border-color", "black");
@@ -251,10 +257,253 @@
 			$(".btn-retry-123").addClass("btn-primary");
 		});
 		$(".btn-show-123").click(function () {
-			$(".btn-q-123").each(correctAnswers);
+			$(".btn-q-123").each(correctAnswers123);
 		});
 	</script>
 
+	<div class="bg-light"
+		style="display: flex; flex-direction: column; width: fit-content; margin: 3vh auto 0; max-width: 768px; align-items: center;">
+		<h4 style="text-align-last: center; text-align: center;">
+			<strong style="color: red">1.</strong> Lorem Ipsum is simply dummy text
+			of the printing and typesetting industry. Lorem Ipsum has been the
+			industry's standard dummy
+		</h4>
+		<div class=" correct-321 btn-q-321 btn-a-321" style="
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  cursor: pointer;
+">
+			<div style="
+	width: 50px;
+	font-weight: bolder;
+	color: white;
+	background-color: black;
+	border: 2px solid black;
+	border-radius: 8px;
+	text-align-last: center;
+	margin-right: 5px;
+  ">
+				A
+			</div>
+			<div style="
+	border: 2px solid black;
+	width: fit-content;
+	border-radius: 8px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+  ">
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+			</div>
+		</div>
+
+		<div class=" btn-q-321 btn-b-321" style="
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  cursor: pointer;
+">
+			<div style="
+	width: 50px;
+	font-weight: bolder;
+	color: white;
+	background-color: rgb(66, 133, 244);
+	border: 2px solid rgb(66, 133, 244);
+	border-radius: 8px;
+	text-align-last: center;
+	margin-right: 5px;
+  ">
+				B
+			</div>
+			<div style="
+	border: 2px solid black;
+	width: fit-content;
+	border-radius: 8px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+  ">
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+			</div>
+		</div>
+		<div class=" btn-q-321 btn-c-321" style="
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  cursor: pointer;
+">
+			<div style="
+	width: 50px;
+	font-weight: bolder;
+	color: white;
+	background-color: rgb(17, 85, 204);
+	border: 2px solid rgb(17, 85, 204);
+	border-radius: 8px;
+	text-align-last: center;
+	margin-right: 5px;
+  ">
+				C
+			</div>
+			<div style="
+	border: 2px solid black;
+	width: fit-content;
+	border-radius: 8px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+  ">
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+			</div>
+		</div>
+		<div class=" btn-q-321 btn-d-321 correct-321" style="
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  cursor: pointer;
+">
+			<div style="
+	width: 50px;
+	font-weight: bolder;
+	color: white;
+	background-color: rgb(60, 120, 216);
+	border: 2px solid rgb(60, 120, 216);
+	border-radius: 8px;
+	text-align-last: center;
+	margin-right: 5px;
+  ">
+				D
+			</div>
+			<div style="
+	border: 2px solid black;
+	width: fit-content;
+	border-radius: 8px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+  ">
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+			</div>
+		</div>
+		<br />
+		<div class="btn-container">
+			<button type="button" class="btn btn-primary small mt-2 btn-retry-321 text-center"
+				style="max-width: 10vw; min-width: 80px;" disabled>
+				Retry
+			</button>
+			<button type="button" class="btn btn-primary small mt-2 btn-show-321 text-center"
+				style="max-width: 10vw; min-width: 65px;">
+				Check
+			</button>
+		</div>
+	</div>
+	<script>
+		let selecteds321 = 0;
+		let corrects321 = 0
+		let flag321 = 0;
+
+		$(".btn-q-321").click(function () {
+			$(this).toggleClass("selected-321");
+			$(this).children(":first").next().css("border-color", "rgb(66, 133, 244)");
+			if (!$(this).hasClass("selected-321")) {
+				$(this).children(":first").next().css("border-color", "black");
+				selecteds321--;
+			}
+			else {
+				selecteds321++;
+
+			}
+		})
+		$(".btn-q-321").each(function () {
+			if ($(this).hasClass("correct-321")) corrects321++;
+		})
+		function correctAnswers321() {
+			$(".selected-321").each(function () {
+				if (!$(this).hasClass("correct-321")) {
+					flag321 = 1
+					return false
+				}
+				else {
+					flag321 = 0;
+				}
+			})
+			if ($(this).hasClass("correct-321")) {
+				$(this).children(":first").css("background-color", "green");
+				$(this).children(":first").css("border-color", "green");
+				$(this).children(":first").next().css("border-color", "green");
+			}
+			else {
+				$(this).children(":first").next().css("border-color", "red");
+				$(".btn-q-321").each(function () {
+					$(this).css("pointer-events", "none")
+				})
+				if (selecteds321 == corrects321 && flag321 == 0) {
+					$(".btn-retry-321").removeClass("btn-primary");
+					$(".btn-retry-321").addClass("btn-success");
+					$(".btn-retry-321").text("Success");
+					return
+				}
+				else {
+					$(".btn-retry-321").prop("disabled", false);
+					$(".btn-retry-321").removeClass("btn-primary");
+					$(".btn-retry-321").addClass("btn-danger");
+					$(".btn-retry-321").text("Fail");
+					setTimeout(() => {
+						$(".btn-retry-321").text("Retry");
+					}, 1300);
+				}
+
+			}
+		}
+		$(".btn-retry-321").click(function () {
+			$(".selected-321").each(function () {
+				$(this).removeClass("selected-321")
+			})
+			selecteds321 = 0;
+			$(this).prop("disabled", true);
+			$(".btn-q-321").each(function () {
+				$(this).children(":first").next().css("border-color", "black");
+				$(this).css("pointer-events", "auto")
+				if ($(this).hasClass("btn-a-321")) {
+					$(this).children(":first").css("background-color", "black");
+					$(this).children(":first").css("border-color", "black");
+				}
+				else if ($(this).hasClass("btn-b-321")) {
+					$(this).children(":first").css("background-color", "rgb(66, 133, 244)");
+					$(this).children(":first").css("border-color", "rgb(66, 133, 244)");
+				}
+				else if ($(this).hasClass("btn-c-321")) {
+					$(this).children(":first").css("background-color", "rgb(17, 85, 204)");
+					$(this).children(":first").css("border-color", "rgb(17, 85, 204)");
+				}
+				else if ($(this).hasClass("btn-d-321")) {
+					$(this).children(":first").css("background-color", "rgb(60, 120, 216)");
+					$(this).children(":first").css("border-color", "rgb(60, 120, 216)");
+				}
+			});
+			$(".btn-retry-321").removeClass("btn-danger");
+			$(".btn-retry-321").addClass("btn-primary");
+		});
+		$(".btn-show-321").click(function () {
+			$(".btn-q-321").each(correctAnswers321);
+		});
+	</script>
 </body>
 
 </html>
