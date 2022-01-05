@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container bg-light"
+		style="width: 768px; min-height: 40vh; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+		<img src="https://img.icons8.com/material/100/000000/micro--v1.png" />
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ab deserunt amet perferendis architecto
+			sequi non, at vero neque soluta sed illum et debitis voluptatem suscipit quo consequuntur possimus!
+			Quisquam.</p>
+		<div class="timer-123">
+			00:00
+		</div>
+		<div class="btn-container" style="margin-top: 16px;">
+			<div type="button" class="btn-record-123"
+				style="background-color: rgba(255, 0, 0, 0.6); padding: 8px 16px; border-radius: 24px; cursor: pointer;">
+				<strong>Record</strong>
+			</div>
+		</div>
+		<div class="audio-container-123" style="margin-top: 16px; display: flex; flex-direction: column;">
+
+		</div>
+	</div>
+	<script>
+		let timer123
+		var seconds123 = 0
+		var minutes123 = 0
+		navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+
+			const mediaRecorder123 = new MediaRecorder(stream)
+
+			let audioChunks123 = []
+
+			mediaRecorder123.addEventListener("dataavailable", event => {
+				audioChunks123.push(event.data)
+			})
+
+			mediaRecorder123.addEventListener("stop", () => {
+				const audioBlob123 = new Blob(audioChunks123)
+				const audioUrl123 = URL.createObjectURL(audioBlob123)
+				audioChunks123 = []
+				$(".audio-container-123").append(`<audio src="${audioUrl123}" controls></audio>`)
+			})
+			$(".btn-record-123").click(function () {
+				$(this).toggleClass("recording-123")
+				if ($(this).hasClass("recording-123")) {
+					$(this).text("Recording")
+					mediaRecorder123.start()
+					seconds123 = 0;
+					minutes123 = 0;
+					timer123 = setInterval(function () {
+						$('.timer-123').text(getMinutesParse() + ":" + getSecondParse());
+					}, 1000);
+				}
+				else {
+					mediaRecorder123.stop()
+					$(this).text("Record")
+					clearInterval(timer123)
+				}
+			})
+			function getMinutesParse() {
+				if (seconds123 == 60) {
+					minutes123++
+				}
+				if (minutes123 < 10) return '0' + minutes123
+				else return minutes123
+			}
+			function getSecondParse() {
+				if (seconds123 == 60) seconds123 = 0
+				seconds123++;
+				if (seconds123 < 10) return '0' + seconds123
+				else return seconds123
+			}
+
+		}).catch(e => {
+			alert("Aluno não permitiu a gravação de audio")
+		})
+	</script>
+</body>
+
+</html>
