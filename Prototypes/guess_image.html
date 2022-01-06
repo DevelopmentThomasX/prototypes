@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+	<title>Document</title>
+</head>
+
+<body>
+`	<div class="container bg-light" style="width: fit-content; max-width: 900px; margin: 0 auto; min-height: 40vh; display: flex; flex-direction: column; justify-items: center; align-items: center; max-height: 90vh;">
+		<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, deleniti autem? Odit, sequi quisquam eveniet
+			ad, nisi ut consequatur ullam, dolore modi voluptates dolor? Consequuntur dicta debitis adipisci deserunt
+			harum.
+		</h3>
+		<div class="img-container" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: center;">
+				<div class="img-123 img-q-123 correct-123" style="border: 2px solid black; width: fit-content; padding: 4px;">
+					<div style="margin: 0 auto; max-width: 768px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+						<img class="img-fluid" src="https://picsum.photos/400/300" alt="" srcset="">
+						<small style="width: 300px; text-align: center;">Lorem ipsum dolor sit amet </small>
+					</div>
+				</div>
+				<div class="img-123 img-q-123" style="border: 2px solid black; width: fit-content; padding: 4px;">
+					<div style="margin: 0 auto; max-width: 768px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+						<img class="img-fluid" src="https://picsum.photos/400/300" alt="" srcset="">
+						<small style="width: 300px; text-align: center;">Lorem ipsum dolor sit amet </small>
+					</div>
+				</div>
+				<div class="img-123 img-q-123" style="border: 2px solid black; width: fit-content; padding: 4px;">
+					<div style="margin: 0 auto; max-width: 768px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+						<img class="img-fluid" src="https://picsum.photos/400/300" alt="" srcset="">
+						<small style="width: 300px; text-align: center;">Lorem ipsum dolor sit amet </small>
+					</div>
+				</div>
+				<div class="img-123 img-q-123" style="border: 2px solid black; width: fit-content; padding: 4px;">
+					<div style="margin: 0 auto; max-width: 768px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+						<img class="img-fluid" src="https://picsum.photos/400/300" alt="" srcset="">
+						<small style="width: 300px; text-align: center;">Lorem ipsum dolor sit amet </small>
+					</div>
+				</div>
+		</div>
+		<div class="btn-container">
+			<button type="button" class="btn btn-primary small mt-2 btn-retry-123 text-center"
+				style="max-width: 10vw; min-width: 80px;" disabled>
+				Retry
+			</button>
+			<button type="button" class="btn btn-primary small mt-2 btn-show-123 text-center"
+				style="max-width: 10vw; min-width: 65px;">
+				Check
+			</button>
+		</div>
+	</div>
+	
+	<script>
+		$("img").each(function () {
+		$(this).css("object-fit", "contain")
+		$(this).css("max-height", "90vh")
+	})
+	</script>
+	<script>
+		let selecteds123 = 0;
+		let corrects123 = 0
+		let flag123 = 0;
+
+		$(".img-q-123").click(function () {
+			$(this).toggleClass("selected-123");
+			$(this).css("border-color", "rgb(66, 133, 244)");
+			if (!$(this).hasClass("selected-123")) {
+				$(this).css("border-color", "black");
+				selecteds123--;
+			}
+			else {
+				selecteds123++;
+
+			}
+		})
+		$(".img-q-123").each(function () {
+			if ($(this).hasClass("correct-123")) corrects123++;
+		})
+		function correctAnswers123() {
+			$(".selected-123").each(function () {
+				if (!$(this).hasClass("correct-123")) {
+					flag123 = 1
+					return false
+				}
+				else {
+					flag123 = 0;
+				}
+			})
+			if ($(this).hasClass("correct-123")) {
+				$(this).css("border-color", "green");
+			}
+			else {
+				$(this).css("border-color", "red");
+				$(".img-q-123").each(function () {
+					$(this).css("pointer-events", "none")
+				})
+				if (selecteds123 == corrects123 && flag123 == 0) {
+					$(".btn-retry-123").removeClass("btn-primary");
+					$(".btn-retry-123").addClass("btn-success");
+					$(".btn-retry-123").text("Success");
+					return
+				}
+				else {
+					$(".btn-retry-123").prop("disabled", false);
+					$(".btn-retry-123").removeClass("btn-primary");
+					$(".btn-retry-123").addClass("btn-danger");
+					$(".btn-retry-123").text("Fail");
+					setTimeout(() => {
+						$(".btn-retry-123").text("Retry");
+					}, 1300);
+				}
+
+			}
+		}
+		$(".btn-retry-123").click(function () {
+			$(".selected-123").each(function () {
+				$(this).removeClass("selected-123")
+			})
+			selecteds123 = 0;
+			$(this).prop("disabled", true);
+			$(".img-q-123").each(function () {
+				$(this).css("border-color", "black");
+				$(this).css("pointer-events", "auto")
+			});
+			$(".btn-retry-123").removeClass("btn-danger");
+			$(".btn-retry-123").addClass("btn-primary");
+		});
+		$(".btn-show-123").click(function () {
+			$(".img-q-123").each(correctAnswers123);
+		});
+	</script>
+</body>
+
+</html>
