@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.9.1.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <title>Gap fill</title>
+  </head>
+  <body>
+    <div
+      class="bg-light"
+      style="
+        min-height: 40vh;
+        max-width: 768px;
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+      "
+    >
+      >
+      <div class="row align-items-center mt-3 mb-3">
+        Hi, my
+        <div
+          id="answer1"
+          class="row align-items-center justify-content-center answer-container-123"
+          style="
+            max-width: 50px;
+            margin: 0 4px;
+            height: 24px;
+            border-bottom: 1.3px solid #132f5f;
+            padding: 0;
+            align-content: center;
+          "
+        >
+          <input
+            class="answer-123"
+            type="text"
+            style="
+              background-color: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              padding: 0;
+            "
+          />
+        </div>
+        <div
+          id="answer2"
+          class="row align-items-center justify-content-center answer-container-123"
+          style="
+            max-width: 50px;
+            margin: 0 4px;
+            height: 24px;
+            border-bottom: 1.3px solid #132f5f;
+            padding: 0;
+            align-content: center;
+          "
+        >
+          <input
+            class="answer-123"
+            type="text"
+            style="
+              background-color: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              padding: 0;
+            "
+          />
+        </div>
+        Alan, I come from France and I
+        <div
+          id="answer3"
+          class="row align-items-center justify-content-center answer-container-123"
+          style="
+            max-width: 50px;
+            margin: 0 4px;
+            height: 24px;
+            border-bottom: 1.3px solid #132f5f;
+            padding: 0;
+            align-content: center;
+          "
+        >
+          <input
+            class="answer-123"
+            type="text"
+            style="
+              background-color: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              padding: 0;
+            "
+          />
+        </div>
+        twenty-four
+        <div
+          id="answer4"
+          class="row align-items-center justify-content-center answer-container-123"
+          style="
+            max-width: 50px;
+            margin: 0 4px;
+            height: 24px;
+            border-bottom: 1.3px solid #132f5f;
+            padding: 0;
+            align-content: center;
+          "
+        >
+          <input
+            class="answer-123"
+            type="text"
+            style="
+              background-color: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              padding: 0;
+            "
+          />
+        </div>
+        old
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-lg button-check-123"
+        style="
+          max-width: fit-content;
+          position: absolute;
+          bottom: 12px;
+          right: 12px;
+        "
+      >
+        Check
+      </button>
+    </div>
+
+    <script>
+      var correctWords = ["name", "is", "am", "years"];
+      let corrects = 0;
+      var i = 0;
+      $(".button-check-123").click(function () {
+        if ($(".button-check-123").hasClass("retry-123")) {
+          i = 0
+          corrects = 0;
+          $(".button-check-123").addClass("btn-primary");
+          $(".button-check-123").removeClass("btn-danger");
+          $(".button-check-123").text("check");
+          $(".button-check-123").removeClass("retry-123");
+          $(".answer-container-123").each(function () {
+            $(this).css("border-color", "black");
+            $(this).html(`<input
+            class="answer-123"
+            type="text"
+            style="
+              background-color: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              padding: 0;
+            "
+          />`);
+          });
+          return;
+        }
+        $(".answer-123").each(function () {
+          $(this).parent().html($(this).val());
+        });
+        $(".answer-container-123").each(function () {
+          if ($(this).text() == correctWords[i]) {
+            $(this).css("border-color", "green");
+            corrects++;
+            i++;
+            return;
+          } else $(this).css("border-color", "red");
+          i++;
+        });
+        if (corrects == correctWords.length) {
+          $(".button-check-123").removeClass("btn-primary");
+          $(".button-check-123").addClass("btn-success");
+          $(".button-check-123").text("Success");
+          $(".button-check-123").prop("disabled", "true")
+        
+          return;
+        } else {
+          $(".button-check-123").prop("disabled", false);
+          $(".button-check-123").removeClass("btn-primary");
+          $(".button-check-123").addClass("btn-danger");
+          $(".button-check-123").text("Fail");
+          $(".button-check-123").addClass("retry-123");
+          setTimeout(() => {
+            $(".button-check-123").text("Retry");
+          }, 1300);
+        }
+      });
+    </script>
+  </body>
+</html>
